@@ -184,7 +184,7 @@ public: //public means accessible from outside the class
         delete temp;
     }
 
-    ~DoublyLinkedList() {
+    ~DoublyLinkedList() { //destructor of DoublyLinkedList
         while (head) {
             Node* temp = head;
             head = head->next;
