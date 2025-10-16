@@ -91,25 +91,27 @@ public: //public means accessible from outside the class
         delete temp;
     }
 
+    //function delete_pos deletes Node based on position within linked list
+    //arguments: int pos
+    //return: none
     void delete_pos(int pos) {
-        if (!head) {
-            cout << "List is empty." << endl;
-            return;
+        if (!head) { //if linked list is empty
+            cout << "List is empty." << endl; //error message
+            return; // end function execution
         }
-    
-        if (pos == 1) {
-            pop_front();
-            return;
+        if (pos == 1) { //if user selected head of linked list
+            pop_front(); //call pop_front to delete head of linked list
+            return; //end function execution
         }
-    
+        //declare temp pointer that points to head of linked list
         Node* temp = head;
-    
-        for (int i = 1; i < pos; i++){
-            if (!temp) {
-                cout << "Position doesn't exist." << endl;
-                return;
+        //for when user doesn't select head of linked list
+        for (int i = 1; i < pos; i++){ //loops until before position value
+            if (!temp) { // if outside of linked list length
+                cout << "Position doesn't exist." << endl; //error message
+                return; //end function executuon
             }
-            else
+            else //otherwise temp points to next Node
                 temp = temp->next;
         }
         if (!temp) {
@@ -128,25 +130,33 @@ public: //public means accessible from outside the class
         delete temp;
     }
 
+    //function push_back adds Node to back of linked list
+    //arguments: int value
+    //return: none
     void push_back(int v) {
+        //declare newNode pointer that points to new Node object with value v
         Node* newNode = new Node(v);
-        if (!tail)
-            head = tail = newNode;
-        else {
-            tail->next = newNode;
-            newNode->prev = tail;
-            tail = newNode;
+        if (!tail) //if linked list is empty
+            head = tail = newNode; //head and tail both set to new Node
+        else { //otherwise connect new Node to tail of linked list
+            tail->next = newNode; //old tail next points to new Node
+            newNode->prev = tail; //new Node prev points to tail
+            tail = newNode; //new Node is now tail
         }
     }
     
+    //function push_front adds Node to front of linked list
+    //arguments: int value
+    //return: none
     void push_front(int v) {
+        //declare newNode pointer that points to new Node object with value v
         Node* newNode = new Node(v);
-        if (!head)
-            head = tail = newNode;
-        else {
-            newNode->next = head;
-            head->prev = newNode;
-            head = newNode;
+        if (!head) //if linked list is empty
+            head = tail = newNode; //head and tail both set to new Node
+        else { //otherwise connect new Node to head of linked list
+            newNode->next = head; //new Node next points to tail
+            head->prev = newNode; //old heads prev points to new Node
+            head = newNode; //new Node is now head
         }
     }
     
