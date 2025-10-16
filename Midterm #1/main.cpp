@@ -78,17 +78,17 @@ public: //public means accessible from outside the class
 
         if (!temp) return; //value is not found
 
-        if (temp->prev) //
-            temp->prev->next = temp->next;
-        else
-            head = temp->next;
+        if (temp->prev) // if temp is not head
+            temp->prev->next = temp->next; //connect temp prev node to next node 
+        else //if deleting head
+            head = temp->next; //head moves to next node
 
-        if (temp->next)
-            temp->next->prev = temp->prev;
-        else
-            tail = temp->prev;
+        if (temp->next) //if temp is not tail
+            temp->next->prev = temp->prev; //connect temp next node to previous node
+        else // if deleting tail
+            tail = temp->prev; //tail moves to previous node
 
-        delete temp;
+        delete temp; //free memory of deleted Node
     }
 
     //function delete_pos deletes Node based on position within linked list
@@ -114,20 +114,20 @@ public: //public means accessible from outside the class
             else //otherwise temp points to next Node
                 temp = temp->next;
         }
-        if (!temp) {
-            cout << "Position doesn't exist." << endl;
-            return;
+        if (!temp) { //if outside of linked list length, invalid position
+            cout << "Position doesn't exist." << endl; //error message
+            return; //end function executuon
         }
     
-        if (!temp->next) {
-            pop_back();
-            return;
+        if (!temp->next) { //if deleting tail there is no next node
+            pop_back(); //call pop_back function to delete tail
+            return; //end function execution
         }
     
-        Node* tempPrev = temp->prev;
-        tempPrev->next = temp->next;
-        temp->next->prev = tempPrev;
-        delete temp;
+        Node* tempPrev = temp->prev; //pointer to node before the one being deleted
+        tempPrev->next = temp->next; //connect previous node to next node
+        temp->next->prev = tempPrev; //connect temp next node to previous node
+        delete temp; //free memory of deleted Node
     }
 
     //function push_back adds Node to back of linked list
