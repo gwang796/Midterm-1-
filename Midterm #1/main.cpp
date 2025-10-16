@@ -191,41 +191,55 @@ public: //public means accessible from outside the class
             delete temp;
         }
     }
+    //function print every element in linked list in order
+    //arguments: none
+    //return: none
     void print() {
-        Node* current = head;
-        if (!current) {
-            cout << "List is empty." << endl;
-            return;
+        Node* current = head; //declare current pointer to head of linked list
+        if (!current) { //if list is empty
+            cout << "List is empty." << endl; //error message
+            return; // end function execution
         }
-        while (current) {
-            cout << current->data << " ";
-            current = current->next;
+        while (current) { //traverse through linked list until current points to nullptr
+            cout << current->data << " "; //printing Node element, current=pointer, -> dereference to print data value not memory address
+            current = current->next; //moving to next node
         }
         cout << endl;
     }
 
+    //function print_reverse prints linked list in reverse
+    //arguments: none
+    //return: none
     void print_reverse() {
-        Node* current = tail;
-        if (!current) {
-            cout << "List is empty." << endl;
-            return;
+        Node* current = tail; //declare current pointer to tail of linked list
+        if (!current) { //if list is empty
+            cout << "List is empty." << endl; //error message
+            return; // end function execution
         }
-        while (current) {
-            cout << current->data << " ";
-            current = current->prev;
+        while (current) { //traverse through linked list until current points to nullptr
+            cout << current->data << " "; //printing Node element, current=pointer, -> dereference to print data value not memory address
+            current = current->prev; //moving to next node
         }
         cout << endl;
     }
-    
-    void ever_other_element(){
-        Node* current = head;
-        if (!current) {
-            cout << "List is empty." << endl;
-            return;
+    //function every_other_element prints every other element of linked list
+    //arguments: none
+    //return: none
+    void every_other_element(){
+        Node* current = head; //declare current pointer to head of linked list
+        if (!current) { //if list is empty
+            cout << "List is empty." << endl; //error message
+            return; // end function execution
         }
-        for (int i =0; <#condition#>; <#increment#>) {
-            <#statements#>
+        int position = 0; //int count to track Node position
+        while (current) { //traverse through linked list until current points to nullptr
+            if (position % 2 ==0) { //position division by 2 has no remaining value (0, 2, 4...)
+                cout << current->data << " "; //printing Node element, current=pointer, -> dereference to print data value not memory address
+                current = current->next; //moving to next node
+            }
+            position++; //add one every loop
         }
+        cout << endl;
     }
 };
 
