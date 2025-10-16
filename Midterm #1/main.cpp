@@ -7,28 +7,33 @@
 
 #include <iostream>
 using namespace std;
-
+//declaring const int variables in order to not hard code
 const int MIN_NR = 10, MAX_NR = 99, MIN_LS = 5, MAX_LS = 20;
 
-class DoublyLinkedList {
-private:
-    struct Node {
-        int data;
-        Node* prev;
-        Node* next;
+class DoublyLinkedList { //declare a class named DoubleLinkedList
+private: //private variables to class DoubleLinkedList, unaccessible outside of class
+    struct Node { //declare a struct Node
+        int data;// int variable data
+        Node* prev; //Node pointer prev points to previous Node in linked list
+        Node* next; //Node pointer next points to the next Node in linked list
+        //Node constructor that initializes struct Node data members
         Node(int val, Node* p = nullptr, Node* n = nullptr) {
-            data = val;
-            prev = p;
-            next = n;
+            data = val; //data initialized to val
+            prev = p; //prev initialized to nullptr
+            next = n; //next initialized to nullptr
         }
     };
 
-    Node* head;
-    Node* tail;
+    Node* head; // declaring Node head of linked list
+    Node* tail; // declaring Node tail of linked list
 
-public:
+public: //public means accessible from outside the class
+    //DoubleLinkedList constructor that initializes head and tail to nullptr
     DoublyLinkedList() { head = nullptr; tail = nullptr; }
 
+    //function insert_after has user insert an int value in the next node of linked list
+    //arguments : int value, int position
+    //return: none
     void insert_after(int value, int position) {
         if (position < 0) {
             cout << "Position must be >= 0." << endl;
@@ -207,6 +212,9 @@ public:
             current = current->prev;
         }
         cout << endl;
+    }
+    void ever_other_element(){
+        
     }
 };
 
