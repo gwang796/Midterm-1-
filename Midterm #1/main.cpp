@@ -48,34 +48,37 @@ public: //public means accessible from outside the class
         //declare temp pointer to head of linked list
         Node* temp = head;
         for (int i = 0; i < position && temp; ++i) //traversing through linked list until before position
-            temp = temp->next; //through each loop temp is set to the next Nodes value
+            temp = temp->next; //through each loop temp is set to the next Nodes
 
-        if (!temp) { //
-            cout << "Position exceeds list size. Node not inserted.\n";
-            delete newNode;
-            return;
+        if (!temp) { // if outside of linked list length
+            cout << "Position exceeds list size. Node not inserted.\n"; //error message
+            delete newNode; //free memory for Node we tried to create
+            return; //end function executuion
         }
 
-        newNode->next = temp->next;
-        newNode->prev = temp;
-        if (temp->next)
-            temp->next->prev = newNode;
+        newNode->next = temp->next; //newNode next is same as temp next
+        newNode->prev = temp; //newNode prev is same as temp current value
+        if (temp->next) //if temp is not the tail
+            temp->next->prev = newNode; //connect temp next node previous pointer to new Node
         else
-            tail = newNode;
-        temp->next = newNode;
+            tail = newNode; //when inserting at the tail
+        temp->next = newNode; //temp next is set to new Node
     }
 
+    //function delete_val deletes a selected value within the linked list
+    //arguments: int value
+    // return: none
     void delete_val(int value) {
-        if (!head) return;
-
+        if (!head) return; //linked list is empty so end function execution
+        //declare temp pointer to head of linked list
         Node* temp = head;
-        
+        //traverse through linked list until finding same value as parameter
         while (temp && temp->data != value)
-            temp = temp->next;
+            temp = temp->next; //value of temp moving to next Nodes
 
-        if (!temp) return;
+        if (!temp) return; //value is not found
 
-        if (temp->prev)
+        if (temp->prev) //
             temp->prev->next = temp->next;
         else
             head = temp->next;
@@ -213,8 +216,16 @@ public: //public means accessible from outside the class
         }
         cout << endl;
     }
+    
     void ever_other_element(){
-        
+        Node* current = head;
+        if (!current) {
+            cout << "List is empty." << endl;
+            return;
+        }
+        for (int i =0; <#condition#>; <#increment#>) {
+            <#statements#>
+        }
     }
 };
 
