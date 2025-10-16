@@ -35,22 +35,22 @@ public: //public means accessible from outside the class
     //arguments : int value, int position
     //return: none
     void insert_after(int value, int position) {
-        if (position < 0) {
-            cout << "Position must be >= 0." << endl;
-            return;
+        if (position < 0) { //makes sure position is within bounds
+            cout << "Position must be >= 0." << endl; //error message
+            return; //end of function execution
         }
-
+        //declaring newNode pointer to new Node object with 'value'
         Node* newNode = new Node(value);
-        if (!head) {
-            head = tail = newNode;
-            return;
+        if (!head) { //if the linked list is empty
+            head = tail = newNode; //head is the same as tail set newNode pointer to head/tail
+            return; //end function execution
         }
-
+        //declare temp pointer to head of linked list
         Node* temp = head;
-        for (int i = 0; i < position && temp; ++i)
-            temp = temp->next;
+        for (int i = 0; i < position && temp; ++i) //traversing through linked list until before position
+            temp = temp->next; //through each loop temp is set to the next Nodes value
 
-        if (!temp) {
+        if (!temp) { //
             cout << "Position exceeds list size. Node not inserted.\n";
             delete newNode;
             return;
