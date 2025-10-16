@@ -150,45 +150,49 @@ public: //public means accessible from outside the class
         }
     }
     
+    //function pop_front deletes head Node of linked list
+    //arguments: none
+    //return: none
     void pop_front() {
-
-        if (!head) {
-            cout << "List is empty." << endl;
-            return;
+        if (!head) { //if linked list is empty
+            cout << "List is empty." << endl; //error message
+            return; // end function exection
         }
-
+        //declare temp pointer points to head of linked list
         Node * temp = head;
-
-        if (head->next) {
-            head = head->next;
-            head->prev = nullptr;
+        if (head->next) { //multiple nodes in linked list
+            head = head->next; //moves head to point to next Node
+            head->prev = nullptr; //the previous head before pointing to next Node is now set to nullptr, new head cannot have previous head
         }
-        else
-            head = tail = nullptr;
-        delete temp;
+        else // only one Node
+            head = tail = nullptr; //list is now empty
+        delete temp; //free memory of old head node
     }
 
+    //function pop_back deletes tail Node of linked list
+    //arguments: none
+    //return: none
     void pop_back() {
-        if (!tail) {
-            cout << "List is empty." << endl;
-            return;
+        if (!tail) { //if linked list is empty
+            cout << "List is empty." << endl; //error message
+            return; // end function exection
         }
+        //declare temp pointer points to tail of linked list
         Node * temp = tail;
-
-        if (tail->prev) {
-            tail = tail->prev;
-            tail->next = nullptr;
+        if (tail->prev) { //multiple nodes in linked list
+            tail = tail->prev; //moves tail to point to prev Node
+            tail->next = nullptr; //the next tail before pointing to next Node is now set to nullptr, new tail cannot have previous tail
         }
-        else
-            head = tail = nullptr;
-        delete temp;
+        else // only one Node
+            head = tail = nullptr; //list is now empty
+        delete temp; //free memory of old tail node
     }
 
-    ~DoublyLinkedList() { //destructor of DoublyLinkedList
-        while (head) {
-            Node* temp = head;
-            head = head->next;
-            delete temp;
+    ~DoublyLinkedList() { //destructor of DoublyLinkedList to free up memory
+        while (head) { //traversing through linked list until head pointer to nullptr
+            Node* temp = head; //declaring temp pointer that points to head of of linked list
+            head = head->next; //head then points to next Node
+            delete temp; //delete temp pointer for no dangling pointers
         }
     }
     //function print every element in linked list in order
